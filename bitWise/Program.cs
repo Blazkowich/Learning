@@ -1,50 +1,49 @@
 ﻿using System;
 
-public class DecimalToBinary_BinaryToDecimal
+public class NumberConverter
 {
-    public static int[] ConvertToBinary(int n)
+    static byte[] result = new byte[8];
+    public static byte[] ConvertToBinary(int n)
     {
-        int[] result = new int[8];
-
         for (int i = 7; i >= 0; i--)
         {
-            result[i] = n & 1;
+            result[i] = (byte)(n & 1);
             n >>= 1;
         }
 
         return result;
     }
 
-    public static int ConvertToDecimal(int[] binary)
+    public static int ConvertToDecimal(byte[] binary)
     {
+        int size = binary.Length;
         int decimalValue = 0;
-        int power = 7;
+        int power = size - 1;
 
         // if negative case
         if (binary[0] == 1)
         {
             // convert to negative
-            int[] flippedBits = new int[8];
-
-            for (int i = 0; i < 8; i++)
+            
+            for (int i = 0; i < size; i++)
             {
-                flippedBits[i] = 1 - binary[i];
+                result[i] = (byte)(1 - binary[i]);
             }
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < size; i++)
             {
-                decimalValue += flippedBits[i] * (1 << power);
+                decimalValue += (sbyte)result[i] * (1 << power);
                 power--;
             }
 
-            decimalValue = -(decimalValue + 1);
+            decimalValue = (sbyte)-(decimalValue + 1);
         }
         else
         {
             // if positive case
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < size; i++)
             {
-                decimalValue += binary[i] * (1 << power);
+                decimalValue += (sbyte)binary[i] * (1 << power);
                 power--;
             }
         }
@@ -56,7 +55,7 @@ public class DecimalToBinary_BinaryToDecimal
     {
         //Positive Case
         Console.WriteLine("Input number : 10");
-        int[] binary2 = ConvertToBinary(10);
+        byte[] binary2 = ConvertToBinary(10);
 
         Console.Write("To Binary : ");
         Console.WriteLine(string.Join("", binary2));
@@ -70,12 +69,12 @@ public class DecimalToBinary_BinaryToDecimal
 
         //Negative Case
         Console.WriteLine("Input number : -10");
-        int[] binaryNegative2 = ConvertToBinary(-10);
+        byte[] binaryNegative2 = ConvertToBinary(-10);
 
         Console.Write("To Binary : ");
         Console.WriteLine(string.Join("", binaryNegative2));
 
         Console.Write("From Binary To Decimal : ");
-        Console.WriteLine(ConvertToDecimal(binaryNegative2));
+        Console.WriteLine(ConvertToDecimal((binaryNegative2)));
     }
 }
