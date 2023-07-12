@@ -31,7 +31,8 @@ public class NumberConverter
             power--;
         }
 
-        int answer = binary[0] == 1 ? (sbyte)-(decimalValue + 1) : (sbyte)-(decimalValue + 1);
+        int answer = (sbyte)-(decimalValue + 1);
+        //int answer = binary[0] == 1 ? (sbyte)-(decimalValue + 1) : (sbyte)-(decimalValue + 1);
 
         return answer;
     }
@@ -54,7 +55,7 @@ public class NumberConverter
 
         //Negative Case
         Console.WriteLine("Input number : -10");
-        byte[] binaryNegative2 = ConvertToBinary(-10);
+        byte[] binaryNegative2 = ConvertToBinary(-50);
 
         Console.Write("To Binary : ");
         Console.WriteLine(string.Join("", binaryNegative2));
