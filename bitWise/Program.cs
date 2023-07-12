@@ -1,10 +1,10 @@
 ﻿using System;
 
 public class NumberConverter
-{
-    static byte[] result = new byte[8];
+{ 
     public static byte[] ConvertToBinary(int n)
     {
+        byte[] result = new byte[8];
         for (int i = 7; i >= 0; i--)
         {
             result[i] = (byte)(n & 1);
@@ -20,35 +20,20 @@ public class NumberConverter
         int decimalValue = 0;
         int power = size - 1;
 
-        // if negative case
-        if (binary[0] == 1)
+        for (int i = 0; i < size; i++)
         {
-            // convert to negative
-            
-            for (int i = 0; i < size; i++)
-            {
-                result[i] = (byte)(1 - binary[i]);
-            }
-
-            for (int i = 0; i < size; i++)
-            {
-                decimalValue += (sbyte)result[i] * (1 << power);
-                power--;
-            }
-
-            decimalValue = (sbyte)-(decimalValue + 1);
-        }
-        else
-        {
-            // if positive case
-            for (int i = 0; i < size; i++)
-            {
-                decimalValue += (sbyte)binary[i] * (1 << power);
-                power--;
-            }
+            binary[i] = (byte)(1 - binary[i]);
         }
 
-        return decimalValue;
+        for (int i = 0; i < size; i++)
+        {
+            decimalValue += (sbyte)binary[i] * (1 << power);
+            power--;
+        }
+
+        int answer = binary[0] == 1 ? (sbyte)-(decimalValue + 1) : (sbyte)-(decimalValue + 1);
+
+        return answer;
     }
 
     public static void Main(string[] args)
