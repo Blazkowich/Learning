@@ -20,18 +20,18 @@ class Program
         int count = 0;
         while (money > 0 && i < coins.Length)
         {
-            if (coins[i] > money && money > 0)
+            if (coins[i] > money)
             {
                 i++;
             }
             else
             {
-                Console.WriteLine(money + " " + coins[i]);
+                Console.WriteLine(money + " - " + coins[i]);
                 money -= coins[i];
                 count++;
             }
         }
-        Console.WriteLine(count);
+        Console.WriteLine("Coin Amount : " + count);
     }
 
     public static int[] ChangeBruteForceCode(int money, int[] coins)
@@ -54,17 +54,21 @@ class Program
                             int valueOfCoins = (i_1 * coins[0]) +
                                 (i_2 * coins[1]) + (i_3 * coins[2]) +
                                 (i_4 * coins[3]) + (i_5 * coins[4]);
-
+                            
                             if (valueOfCoins == money)
                             {
-                                int numberOfCoins = i_1 + i_2 +
+                                int numberOfCoins =
+                                    i_1 + i_2 +
                                     i_3 + i_4 + i_5;
-
                                 if (numberOfCoins < smallestNumber)
                                 {
                                     smallestNumber = numberOfCoins;
-                                    count = new int[] { i_1, i_2, i_3, i_4, i_5 };
-                                    bestChange = new int[] { i_1, i_2, i_3, i_4, i_5 };
+
+                                    count[0] = i_1;
+                                    count[1] = i_2;
+                                    count[2] = i_3;
+                                    count[3] = i_4;
+                                    count[4] = i_5;
                                 }
                             }
                         }
@@ -76,7 +80,7 @@ class Program
         Console.WriteLine($"{money} Cents can be split into:");
         for (int i = 0; i < coins.Length; i++)
         {
-            Console.WriteLine($"{coins[i]} cent coin: {bestChange[i]} times");
+            Console.WriteLine($"{coins[i]} cent coin: {count[i]} times");
         }
 
         return count;
