@@ -4,14 +4,12 @@ class Program
 {
     static void Main(string[] args)
     {
-        //Input - Money 77 , Coins 25,10,5,1
-        //Output - 5 (25,25,25,1,1)
+        //Greedy
         ChangeGreedy(77, new int[] { 25, 10, 5, 1 });
 
         Console.WriteLine();
 
-        //Input - Money 40 , Coins 25,20,10,5,1
-        //Output - 5 (20,20)
+        //Brute Force
         int[] coins = { 25, 20, 10, 5, 1 };
         int[] result = ChangeBruteForceCode(40, coins);
         Console.WriteLine("Change: " + string.Join(", ", result));
