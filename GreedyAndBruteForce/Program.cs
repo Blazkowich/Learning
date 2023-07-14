@@ -38,7 +38,6 @@ class Program
     {
         coins = coins.OrderByDescending(c => c).ToArray();
         int[] count = new int[coins.Length];
-        int[] bestChange = new int[coins.Length];
         int smallestNumber = int.MaxValue;
 
         for (int i_1 = 0; i_1 <= money / coins[0]; i_1++)
