@@ -10,9 +10,7 @@ class Program
         Console.WriteLine();
 
         //Brute Force
-        int[] coins = { 25, 20, 10, 5, 1 };
-        int[] result = ChangeBruteForceCode(40, coins);
-        Console.WriteLine("Change: " + string.Join(", ", result));
+        int[] result = ChangeBruteForceCode(40, new int[] { 25, 20, 10, 5, 1 });
     }
     public static void ChangeGreedy(int money, int[] coins)
     {
